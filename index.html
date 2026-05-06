@@ -1,0 +1,1667 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aqsa Abid — Frontend & AI Developer</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ROOT TOKENS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      :root {
+        --ink: #0f1923;
+        --ink2: #253545;
+        --ink3: #3d5468;
+        --surface: #f5f7fa;
+        --surface2: #edf1f7;
+        --white: #ffffff;
+        --teal: #0891b2;
+        --teal-l: #22d3ee;
+        --teal-d: #0e7490;
+        --amber: #f59e0b;
+        --amber-l: #fcd34d;
+        --rose: #f43f5e;
+        --card-bg: rgba(255, 255, 255, 0.85);
+        --card-brd: rgba(8, 145, 178, 0.14);
+        --shadow: 0 4px 32px rgba(15, 25, 35, 0.08);
+        --shadow-lg: 0 12px 60px rgba(8, 145, 178, 0.18);
+        --radius: 18px;
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESET & BASE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background: var(--surface);
+        color: var(--ink);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        text-decoration: none;
+      }
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--surface2);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--teal);
+        border-radius: 3px;
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CURSOR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      body {
+        cursor: none;
+      }
+      #c1 {
+        width: 10px;
+        height: 10px;
+        background: var(--teal);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s;
+      }
+      #c2 {
+        width: 34px;
+        height: 34px;
+        border: 1.5px solid rgba(8, 145, 178, 0.45);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition:
+          left 0.18s ease,
+          top 0.18s ease,
+          width 0.2s,
+          height 0.2s;
+      }
+      a:hover ~ #c2,
+      button:hover ~ #c2 {
+        width: 46px;
+        height: 46px;
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   NAVBAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 500;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.1rem 7%;
+        background: rgba(204, 238, 255, 0.88);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(8, 145, 178, 0.1);
+        transition: box-shadow 0.3s;
+      }
+      nav.scrolled {
+        box-shadow: 0 2px 24px rgba(15, 25, 35, 0.08);
+      }
+      .n-logo {
+        font-family: "Fraunces", serif;
+        font-size: 1.45rem;
+        font-weight: 700;
+        color: var(--ink);
+        letter-spacing: -0.02em;
+      }
+      .n-logo span {
+        color: var(--teal);
+      }
+      .n-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+      .n-links a {
+        font-size: 0.86rem;
+        font-weight: 600;
+        color: var(--ink3);
+        letter-spacing: 0.03em;
+        transition: color 0.2s;
+        position: relative;
+        padding-bottom: 2px;
+      }
+      .n-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--teal);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.28s ease;
+        border-radius: 2px;
+      }
+      .n-links a:hover {
+        color: var(--teal);
+      }
+      .n-links a:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+      .n-btn {
+        padding: 0.55rem 1.5rem;
+        background: var(--teal);
+        color: #fff;
+        font-size: 0.84rem;
+        font-weight: 700;
+        border-radius: 100px;
+        transition: all 0.2s;
+        box-shadow: 0 0 0 0 rgba(8, 145, 178, 0.4);
+      }
+      .n-btn:hover {
+        background: var(--teal-d);
+        box-shadow: 0 0 0 6px rgba(8, 145, 178, 0.15);
+        transform: translateY(-1px);
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HERO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 7.5rem 7% 5rem;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(
+          160deg,
+          #cceeff 0%,
+          #d8f3fc 40%,
+          #e4f8fe 75%,
+          #edfcff 100%
+        );
+      }
+
+      /* large decorative blobs */
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 0;
+        filter: blur(70px);
+      }
+      .blob-1 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(8, 145, 178, 0.12),
+          transparent 70%
+        );
+        top: -150px;
+        right: -100px;
+        animation: drift 12s ease-in-out infinite;
+      }
+      .blob-2 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(245, 158, 11, 0.1),
+          transparent 70%
+        );
+        bottom: -80px;
+        left: 5%;
+        animation: drift 14s ease-in-out infinite 4s;
+      }
+      .blob-3 {
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          rgba(8, 145, 178, 0.08),
+          transparent 70%
+        );
+        top: 40%;
+        left: 35%;
+        animation: drift 10s ease-in-out infinite 2s;
+      }
+      @keyframes drift {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-28px) scale(1.04);
+        }
+      }
+
+      .hero-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+        max-width: 1200px;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── hero text */
+      .h-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(8, 145, 178, 0.1);
+        border: 1px solid rgba(8, 145, 178, 0.25);
+        color: var(--teal-d);
+        border-radius: 100px;
+        padding: 0.38rem 1rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 1.6rem;
+      }
+      .h-pill .pulse {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #10b981;
+        animation: pls 2s ease infinite;
+      }
+      @keyframes pls {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(0.5);
+          opacity: 0.3;
+        }
+      }
+
+      .hero-title {
+        font-family: "Fraunces", serif;
+        font-size: clamp(3rem, 5.5vw, 5.5rem);
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.5rem;
+        color: var(--ink);
+      }
+      .hero-title .accent {
+        color: var(--teal);
+        font-style: italic;
+      }
+      .hero-title .name-line {
+        display: block;
+        background: linear-gradient(
+          135deg,
+          var(--ink) 0%,
+          var(--teal-d) 60%,
+          var(--teal) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .role-tag {
+        display: inline-block;
+        background: var(--ink);
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 0.45rem 1.1rem;
+        border-radius: 8px;
+        margin-bottom: 1.6rem;
+        letter-spacing: 0.02em;
+      }
+      .role-tag span {
+        color: var(--teal-l);
+      }
+
+      .hero-desc {
+        color: var(--ink3);
+        font-size: 1.02rem;
+        line-height: 1.9;
+        max-width: 500px;
+        margin-bottom: 2.5rem;
+        font-weight: 400;
+      }
+      .hero-desc strong {
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 0.9rem;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+      }
+      .cta-main {
+        padding: 0.85rem 2.1rem;
+        background: var(--teal);
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.92rem;
+        border-radius: 12px;
+        transition: all 0.25s;
+        box-shadow: 0 4px 20px rgba(8, 145, 178, 0.35);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .cta-main:hover {
+        background: var(--teal-d);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(8, 145, 178, 0.4);
+      }
+      .cta-ghost {
+        padding: 0.85rem 2.1rem;
+        background: transparent;
+        color: var(--ink);
+        border: 2px solid rgba(15, 25, 35, 0.15);
+        font-weight: 600;
+        font-size: 0.92rem;
+        border-radius: 12px;
+        transition: all 0.25s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .cta-ghost:hover {
+        border-color: var(--teal);
+        color: var(--teal);
+        transform: translateY(-1px);
+      }
+
+      .hero-nums {
+        display: flex;
+        gap: 2.5rem;
+        padding-top: 2.2rem;
+        border-top: 1px solid rgba(15, 25, 35, 0.1);
+      }
+      .hn {
+      }
+      .hn-n {
+        font-family: "Fraunces", serif;
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--teal);
+        line-height: 1;
+      }
+      .hn-l {
+        font-size: 0.73rem;
+        color: var(--ink3);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        margin-top: 0.25rem;
+      }
+
+      /* ── hero avatar */
+      .av-side {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      .av-card {
+        width: 340px;
+        height: 400px;
+        background: var(--white);
+        border-radius: 32px;
+        border: 1.5px solid rgba(8, 145, 178, 0.15);
+        box-shadow: var(--shadow-lg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        position: relative;
+        overflow: hidden;
+        padding: 2rem;
+      }
+      .av-card::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        width: 180px;
+        height: 180px;
+        background: radial-gradient(
+          circle,
+          rgba(8, 145, 178, 0.1),
+          transparent
+        );
+        border-radius: 50%;
+      }
+      .av-card::after {
+        content: "";
+        position: absolute;
+        bottom: -30px;
+        left: -30px;
+        width: 140px;
+        height: 140px;
+        background: radial-gradient(
+          circle,
+          rgba(245, 158, 11, 0.12),
+          transparent
+        );
+        border-radius: 50%;
+      }
+
+      .av-photo-wrap {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          rgba(8, 145, 178, 0.15),
+          rgba(245, 158, 11, 0.1)
+        );
+        border: 3px solid rgba(8, 145, 178, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+      }
+      .av-initials {
+        font-family: "Fraunces", serif;
+        font-size: 4rem;
+        font-weight: 700;
+        color: var(--teal);
+      }
+      .av-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .av-name {
+        font-family: "Fraunces", serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--ink);
+        position: relative;
+        z-index: 1;
+      }
+      .av-role {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--teal-d);
+        background: rgba(8, 145, 178, 0.1);
+        padding: 0.3rem 0.8rem;
+        border-radius: 100px;
+        position: relative;
+        z-index: 1;
+        border: 1px solid rgba(8, 145, 178, 0.2);
+      }
+
+      .av-badges {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+      }
+      .av-badge {
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 0.28rem 0.75rem;
+        background: var(--surface2);
+        border: 1px solid rgba(15, 25, 35, 0.08);
+        border-radius: 100px;
+        color: var(--ink2);
+      }
+
+      /* floating cards around avatar */
+      .float-el {
+        position: absolute;
+        background: var(--white);
+        border: 1px solid rgba(8, 145, 178, 0.18);
+        border-radius: 14px;
+        padding: 0.55rem 1rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        box-shadow: 0 4px 20px rgba(15, 25, 35, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        animation: floatEl 4s ease-in-out infinite;
+        z-index: 2;
+        white-space: nowrap;
+      }
+      .float-el:nth-child(1) {
+        top: -10px;
+        left: -30px;
+        animation-delay: 0s;
+        color: var(--teal-d);
+      }
+      .float-el:nth-child(2) {
+        bottom: 20px;
+        right: -35px;
+        animation-delay: 1.5s;
+        color: #059669;
+      }
+      .float-el:nth-child(3) {
+        top: 35%;
+        left: -50px;
+        animation-delay: 0.8s;
+        color: var(--amber);
+      }
+      @keyframes floatEl {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-1deg);
+        }
+        50% {
+          transform: translateY(-9px) rotate(1deg);
+        }
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION COMMONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      section {
+        padding: 6.5rem 7%;
+        position: relative;
+        z-index: 1;
+      }
+      .s-eyebrow {
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 0.6rem;
+      }
+      .s-title {
+        font-family: "Fraunces", serif;
+        font-size: clamp(2rem, 3.5vw, 2.8rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        color: var(--ink);
+        margin-bottom: 0.6rem;
+      }
+      .s-title em {
+        color: var(--teal);
+        font-style: italic;
+      }
+      .s-rule {
+        width: 44px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--teal), var(--amber));
+        border-radius: 2px;
+        margin-bottom: 3rem;
+      }
+
+      /* reveal */
+      .rv {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .rv.go {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .rv.d1 {
+        transition-delay: 0.08s;
+      }
+      .rv.d2 {
+        transition-delay: 0.16s;
+      }
+      .rv.d3 {
+        transition-delay: 0.24s;
+      }
+      .rv.d4 {
+        transition-delay: 0.32s;
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ABOUT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      #about {
+        background: linear-gradient(
+          160deg,
+          #edfcff 0%,
+          #f0faff 50%,
+          #e8f6fb 100%
+        );
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 5rem;
+        align-items: start;
+        max-width: 1100px;
+      }
+      .about-text p {
+        font-size: 1rem;
+        line-height: 1.95;
+        color: var(--ink3);
+        font-weight: 400;
+        margin-bottom: 1.2rem;
+      }
+      .about-text p em {
+        color: var(--ink);
+        font-style: normal;
+        font-weight: 700;
+      }
+      .about-text p strong {
+        color: var(--teal-d);
+        font-weight: 700;
+      }
+
+      .about-right {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .a-card {
+        background: rgba(255, 255, 255, 0.85);
+        border: 1.5px solid rgba(8, 145, 178, 0.15);
+        border-radius: 16px;
+        padding: 1.2rem 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.25s;
+        box-shadow: 0 2px 12px rgba(8, 145, 178, 0.08);
+      }
+      .a-card:hover {
+        border-color: rgba(8, 145, 178, 0.35);
+        background: rgba(8, 145, 178, 0.04);
+        transform: translateX(5px);
+        box-shadow: 0 4px 20px rgba(8, 145, 178, 0.1);
+      }
+      .a-ico {
+        font-size: 1.3rem;
+        flex-shrink: 0;
+      }
+      .a-lbl {
+        font-size: 0.67rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        color: var(--teal-d);
+        text-transform: uppercase;
+      }
+      .a-val {
+        font-size: 0.93rem;
+        font-weight: 600;
+        color: var(--ink);
+        margin-top: 0.1rem;
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SKILLS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      #skills {
+        background: linear-gradient(
+          160deg,
+          #0b1f2e 0%,
+          #0f2a3d 60%,
+          #102030 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+      #skills::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(8, 145, 178, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(8, 145, 178, 0.05) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+      }
+      #skills .s-eyebrow {
+        color: var(--teal-l);
+      }
+      #skills .s-title {
+        color: #e8f6fb;
+      }
+      #skills .s-rule {
+        background: linear-gradient(90deg, var(--teal-l), var(--amber-l));
+      }
+
+      .sk-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: 1.4rem;
+        max-width: 1100px;
+      }
+      .sk-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(8, 145, 178, 0.18);
+        border-radius: 20px;
+        padding: 2rem;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(8px);
+      }
+      .sk-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--teal), var(--amber));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s;
+      }
+      .sk-card:hover::after {
+        transform: scaleX(1);
+      }
+      .sk-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(8, 145, 178, 0.4);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .sk-ico {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+        display: block;
+      }
+      .sk-t {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: #e8f6fb;
+        margin-bottom: 1.3rem;
+      }
+
+      .brow {
+        margin-bottom: 0.9rem;
+      }
+      .bmeta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.79rem;
+        color: rgba(200, 230, 245, 0.6);
+        margin-bottom: 0.35rem;
+      }
+      .bmeta span:last-child {
+        color: var(--teal-l);
+        font-weight: 700;
+      }
+      .btrack {
+        height: 5px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      .bfill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--teal), var(--teal-l));
+        border-radius: 3px;
+        width: 0;
+        transition: width 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .sk-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.5rem;
+      }
+      .stag {
+        padding: 0.28rem 0.75rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        background: rgba(8, 145, 178, 0.15);
+        border: 1px solid rgba(8, 145, 178, 0.25);
+        border-radius: 100px;
+        color: var(--teal-l);
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PROJECTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      #projects {
+        background: linear-gradient(
+          160deg,
+          #e4f8fe 0%,
+          #edfcff 50%,
+          #f0faff 100%
+        );
+      }
+      .pj-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(305px, 1fr));
+        gap: 1.7rem;
+        max-width: 1200px;
+      }
+
+      .pj-card {
+        background: var(--white);
+        border: 1.5px solid rgba(15, 25, 35, 0.08);
+        border-radius: 22px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s;
+        box-shadow: 0 2px 16px rgba(15, 25, 35, 0.06);
+      }
+      .pj-card:hover {
+        transform: translateY(-7px);
+        border-color: rgba(8, 145, 178, 0.3);
+        box-shadow: 0 24px 70px rgba(8, 145, 178, 0.16);
+      }
+      .pj-top {
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.5rem;
+        position: relative;
+      }
+      .pj-top::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, transparent 40%, var(--white));
+      }
+      .pt1 {
+        background: linear-gradient(135deg, #e0f7ff, #f0f9fe);
+      }
+      .pt2 {
+        background: linear-gradient(135deg, #e6faf4, #f0f9ef);
+      }
+      .pt3 {
+        background: linear-gradient(135deg, #fffbeb, #fef9e6);
+      }
+      .pt4 {
+        background: linear-gradient(135deg, #f3f0ff, #f0effe);
+      }
+
+      .pj-body {
+        padding: 1.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .pj-num {
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.13em;
+        color: var(--teal-d);
+        text-transform: uppercase;
+        margin-bottom: 0.4rem;
+      }
+      .pj-title {
+        font-family: "Fraunces", serif;
+        font-size: 1.22rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 0.5rem;
+      }
+      .pj-desc {
+        font-size: 0.87rem;
+        line-height: 1.78;
+        color: var(--ink3);
+        flex: 1;
+        margin-bottom: 1.2rem;
+      }
+      .pj-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        margin-bottom: 1.3rem;
+      }
+      .ptag {
+        padding: 0.25rem 0.7rem;
+        font-size: 0.7rem;
+        font-weight: 700;
+        background: rgba(8, 145, 178, 0.08);
+        border: 1px solid rgba(8, 145, 178, 0.18);
+        border-radius: 100px;
+        color: var(--teal-d);
+      }
+
+      .pj-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.65rem 1.4rem;
+        background: var(--ink);
+        color: #fff;
+        border-radius: 10px;
+        font-size: 0.83rem;
+        font-weight: 700;
+        transition: all 0.22s;
+      }
+      .pj-btn:hover {
+        background: var(--teal);
+        box-shadow: 0 0 24px rgba(8, 145, 178, 0.4);
+        transform: translateY(-1px);
+      }
+      .pj-btn svg {
+        width: 15px;
+        height: 15px;
+        fill: currentColor;
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CONTACT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      #contact {
+        background: linear-gradient(160deg, #0b1f2e 0%, #0f2a3d 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      #contact::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(8, 145, 178, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(8, 145, 178, 0.05) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+      }
+      #contact .s-eyebrow {
+        color: var(--teal-l);
+      }
+      #contact .s-title {
+        color: #e8f6fb;
+      }
+      #contact .s-rule {
+        background: linear-gradient(90deg, var(--teal-l), var(--amber-l));
+      }
+
+      .c-box {
+        max-width: 680px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(8, 145, 178, 0.2);
+        border-radius: 24px;
+        padding: 3rem;
+        backdrop-filter: blur(12px);
+        position: relative;
+        z-index: 1;
+      }
+      .c-sub {
+        color: rgba(200, 230, 245, 0.65);
+        font-size: 0.98rem;
+        line-height: 1.9;
+        margin-bottom: 2rem;
+      }
+      .c-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+      .c-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.3rem;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(8, 145, 178, 0.15);
+        border-radius: 13px;
+        color: #e8f6fb;
+        transition: all 0.25s;
+      }
+      .c-row:hover {
+        background: rgba(8, 145, 178, 0.12);
+        border-color: rgba(8, 145, 178, 0.4);
+        transform: translateX(5px);
+      }
+      .c-ico {
+        font-size: 1.2rem;
+      }
+      .c-lbl {
+        font-size: 0.67rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        color: rgba(8, 145, 178, 0.75);
+        text-transform: uppercase;
+      }
+      .c-val {
+        font-size: 0.92rem;
+        font-weight: 600;
+        margin-top: 0.1rem;
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FOOTER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      footer {
+        background: #0b1f2e;
+        border-top: 1px solid rgba(8, 145, 178, 0.2);
+        text-align: center;
+        padding: 1.8rem 7%;
+        color: rgba(200, 230, 245, 0.45);
+        font-size: 0.8rem;
+        position: relative;
+        z-index: 1;
+      }
+      footer strong {
+        color: var(--teal-l);
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESPONSIVE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      @media (max-width: 800px) {
+        .hero-wrap {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 3rem;
+        }
+        .av-side {
+          order: -1;
+        }
+        .hero-cta,
+        .hero-nums,
+        .h-pill {
+          justify-content: center;
+        }
+        .hero-desc {
+          margin: 0 auto 2.5rem;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+        .n-links {
+          display: none;
+        }
+        nav {
+          padding: 1rem 5%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- CURSOR -->
+    <div id="c1"></div>
+    <div id="c2"></div>
+
+    <!-- ━━ NAV ━━ -->
+    <nav id="navbar">
+      <div class="n-logo">Aqsa<span>.</span></div>
+      <ul class="n-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="n-btn">Hire Me →</a>
+    </nav>
+
+    <!-- ━━ HERO ━━ -->
+    <section id="hero">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+
+      <div class="hero-wrap">
+        <!-- text side -->
+        <div>
+          <div class="h-pill rv">
+            <span class="pulse"></span> Available for Work
+          </div>
+
+          <h1 class="hero-title rv d1">
+            Hi, I'm<br />
+            <span class="name-line">Aqsa Abid</span>
+          </h1>
+
+          <div class="role-tag rv d2">
+            <span>Frontend Developer</span> &amp; AI Chatbot Developer
+          </div>
+
+          <p class="hero-desc rv d2">
+            I craft <strong>beautiful, responsive websites</strong> and build
+            <strong>intelligent AI chatbots</strong> that solve real problems.
+            Based in Pakistan, passionate about clean code and smart technology.
+          </p>
+
+          <div class="hero-cta rv d3">
+            <a href="#projects" class="cta-main">View My Work →</a>
+            <a href="#contact" class="cta-ghost">Let's Talk</a>
+          </div>
+
+          <div class="hero-nums rv d4">
+            <div class="hn">
+              <div class="hn-n">4</div>
+              <div class="hn-l">Projects Built</div>
+            </div>
+            <div class="hn">
+              <div class="hn-n">2+</div>
+              <div class="hn-l">Years Learning</div>
+            </div>
+            <div class="hn">
+              <div class="hn-n">100%</div>
+              <div class="hn-l">Dedicated</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- avatar card -->
+        <div class="av-side rv d2">
+          <span class="float-el">⚡ AI Developer</span>
+          <span class="float-el">✅ Open to Work</span>
+          <span class="float-el">🌐 Web Dev</span>
+
+          <div class="av-card">
+            <div class="av-photo-wrap">
+              <!--
+          ═══════════════════════════════════
+          📸 APNI PHOTO YAHAN LAGAO:
+          Neeche wali line uncomment karo aur
+          src mein apni photo ka path likho:
+
+          <img src="apki-photo.jpg" alt="Aqsa Abid" class="av-img">
+
+          Aur uske neche wali line comment karo
+          ═══════════════════════════════════
+          -->
+              <img
+                src="WhatsApp Image 2026-03-05 at 10.34.41 PM.jpeg"
+                alt="Aqsa Abid"
+                class="av-img"
+              />
+            </div>
+            <div class="av-name">Aqsa Abid</div>
+            <div class="av-role">Frontend & AI Developer</div>
+            <div class="av-badges">
+              <span class="av-badge">🤖 AI Chatbots</span>
+              <span class="av-badge">🎨 UI Design</span>
+              <span class="av-badge">⚡ Groq API</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━ ABOUT ━━ -->
+    <section id="about">
+      <div class="about-grid">
+        <div>
+          <div class="s-eyebrow rv">Who I Am</div>
+          <h2 class="s-title rv">About <em>Me</em></h2>
+          <div class="s-rule rv"></div>
+          <div class="about-text">
+            <p class="rv">
+              I'm <em>Aqsa Abid</em>, a passionate
+              <strong>Frontend Developer</strong> and
+              <strong>AI Chatbot Developer</strong> who loves turning ideas into
+              elegant, working digital products.
+            </p>
+            <p class="rv d1">
+              My work spans from building
+              <strong>pixel-perfect, responsive websites</strong> using HTML,
+              CSS &amp; JavaScript — to developing
+              <strong>intelligent AI-powered chatbots</strong> using
+              cutting-edge tools like Groq API, LLMs, and prompt engineering.
+            </p>
+            <p class="rv d2">
+              I've built a research assistant, an HR bot, a restaurant chatbot,
+              and a blazing-fast LLM chat app. Every project I take on is
+              crafted with
+              <strong>care, precision, and real problem-solving</strong> in
+              mind.
+            </p>
+            <p class="rv d3">
+              I believe the best software lives where
+              <strong>beautiful design meets intelligent technology</strong> —
+              and that's exactly what I build.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div class="s-eyebrow rv">Quick Info</div>
+          <h2 class="s-title rv" style="font-size: 1.65rem">My Details</h2>
+          <div class="s-rule rv"></div>
+          <div class="about-right">
+            <div class="a-card rv">
+              <span class="a-ico">👩‍💻</span>
+              <div>
+                <div class="a-lbl">Role</div>
+                <div class="a-val">Frontend & AI Developer</div>
+              </div>
+            </div>
+            <div class="a-card rv d1">
+              <span class="a-ico">📍</span>
+              <div>
+                <div class="a-lbl">Location</div>
+                <!-- ✏️ Apna sheher yahan likho -->
+                <div class="a-val">Pakistan 🇵🇰</div>
+              </div>
+            </div>
+            <div class="a-card rv d2">
+              <span class="a-ico">🐙</span>
+              <div>
+                <div class="a-lbl">GitHub</div>
+                <div class="a-val">github.com/akorani196-ux</div>
+              </div>
+            </div>
+            <div class="a-card rv d2">
+              <span class="a-ico">✉️</span>
+              <div>
+                <div class="a-lbl">Email</div>
+                <!-- ✏️ Apni email update karo -->
+                <div class="a-val">your.email@gmail.com</div>
+              </div>
+            </div>
+            <div class="a-card rv d3">
+              <span class="a-ico">🟢</span>
+              <div>
+                <div class="a-lbl">Status</div>
+                <div class="a-val">Open to Work & Freelance</div>
+              </div>
+            </div>
+            <div class="rv d3" style="padding-top: 0.3rem">
+              <!-- ✏️ CV ka link yahan add karo -->
+              <a
+                href="#"
+                class="cta-main"
+                style="font-size: 0.85rem; padding: 0.75rem 1.7rem"
+                >Download CV ↓</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━ SKILLS ━━ -->
+    <section id="skills">
+      <div class="s-eyebrow rv">What I Do</div>
+      <h2 class="s-title rv">
+        My <em style="color: var(--teal-l); font-style: italic">Skills</em>
+      </h2>
+      <div class="s-rule rv"></div>
+      <div class="sk-grid">
+        <div class="sk-card rv">
+          <span class="sk-ico">🎨</span>
+          <div class="sk-t">Frontend Development</div>
+          <div class="brow">
+            <div class="bmeta"><span>HTML5</span><span>95%</span></div>
+            <div class="btrack"><div class="bfill" data-w="95"></div></div>
+          </div>
+          <div class="brow">
+            <div class="bmeta">
+              <span>CSS3 & Animations</span><span>90%</span>
+            </div>
+            <div class="btrack"><div class="bfill" data-w="90"></div></div>
+          </div>
+          <div class="brow">
+            <div class="bmeta"><span>JavaScript</span><span>80%</span></div>
+            <div class="btrack"><div class="bfill" data-w="80"></div></div>
+          </div>
+          <div class="brow">
+            <div class="bmeta">
+              <span>Responsive Design</span><span>93%</span>
+            </div>
+            <div class="btrack"><div class="bfill" data-w="93"></div></div>
+          </div>
+        </div>
+
+        <div class="sk-card rv d1">
+          <span class="sk-ico">🤖</span>
+          <div class="sk-t">AI Chatbot Development</div>
+          <div class="brow">
+            <div class="bmeta">
+              <span>Chatbot Architecture</span><span>88%</span>
+            </div>
+            <div class="btrack"><div class="bfill" data-w="88"></div></div>
+          </div>
+          <div class="brow">
+            <div class="bmeta">
+              <span>Prompt Engineering</span><span>90%</span>
+            </div>
+            <div class="btrack"><div class="bfill" data-w="90"></div></div>
+          </div>
+          <div class="brow">
+            <div class="bmeta">
+              <span>Groq / LLM APIs</span><span>85%</span>
+            </div>
+            <div class="btrack"><div class="bfill" data-w="85"></div></div>
+          </div>
+          <div class="brow">
+            <div class="bmeta"><span>AI Integration</span><span>82%</span></div>
+            <div class="btrack"><div class="bfill" data-w="82"></div></div>
+          </div>
+        </div>
+
+        <div class="sk-card rv d2">
+          <span class="sk-ico">🛠️</span>
+          <div class="sk-t">Tools & Technologies</div>
+          <div class="sk-tags">
+            <span class="stag">Python</span>
+            <span class="stag">Git & GitHub</span>
+            <span class="stag">Streamlit</span>
+            <span class="stag">Groq API</span>
+            <span class="stag">OpenAI API</span>
+            <span class="stag">REST APIs</span>
+            <span class="stag">VS Code</span>
+            <span class="stag">Figma</span>
+            <span class="stag">NLP</span>
+            <span class="stag">JSON</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━ PROJECTS ━━ -->
+    <section id="projects">
+      <div class="s-eyebrow rv">My Work</div>
+      <h2 class="s-title rv">Featured <em>Projects</em></h2>
+      <div class="s-rule rv"></div>
+      <div class="pj-grid">
+        <div class="pj-card rv">
+          <div class="pj-top pt1">🔬</div>
+          <div class="pj-body">
+            <div class="pj-num">Project 01</div>
+            <div class="pj-title">AI Research Assistant</div>
+            <p class="pj-desc">
+              An intelligent AI-powered research tool that helps users find,
+              summarize and analyze information fast — built with Python and
+              LLMs.
+            </p>
+            <div class="pj-tags">
+              <span class="ptag">Python</span><span class="ptag">LLM</span
+              ><span class="ptag">Streamlit</span>
+            </div>
+            <a
+              href="https://github.com/akorani196-ux/-AI-research-assistant"
+              target="_blank"
+              class="pj-btn"
+            >
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57v-2.24c-3.02.56-3.8-.73-4.04-1.41-.13-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.78-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.11-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.47-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.3-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.38.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                />
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="pj-card rv d1">
+          <div class="pj-top pt2">🍽️</div>
+          <div class="pj-body">
+            <div class="pj-num">Project 02</div>
+            <div class="pj-title">Restaurant Chatbot</div>
+            <p class="pj-desc">
+              A smart conversational chatbot for restaurants — helps customers
+              explore menus, place orders, and get instant answers.
+            </p>
+            <div class="pj-tags">
+              <span class="ptag">AI Chatbot</span
+              ><span class="ptag">Python</span><span class="ptag">NLP</span>
+            </div>
+            <a
+              href="https://github.com/akorani196-ux/Resturant-chatbot"
+              target="_blank"
+              class="pj-btn"
+            >
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57v-2.24c-3.02.56-3.8-.73-4.04-1.41-.13-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.78-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.11-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.47-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.3-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.38.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                />
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="pj-card rv d2">
+          <div class="pj-top pt3">⚡</div>
+          <div class="pj-body">
+            <div class="pj-num">Project 03</div>
+            <div class="pj-title">GroqChat AI</div>
+            <p class="pj-desc">
+              A blazing-fast AI chat app powered by the Groq API — ultra-low
+              latency conversations using the latest open-source LLM models.
+            </p>
+            <div class="pj-tags">
+              <span class="ptag">Groq API</span><span class="ptag">Python</span
+              ><span class="ptag">LLM</span>
+            </div>
+            <a
+              href="https://github.com/akorani196-ux/groqchat-ai"
+              target="_blank"
+              class="pj-btn"
+            >
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57v-2.24c-3.02.56-3.8-.73-4.04-1.41-.13-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.78-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.11-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.47-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.3-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.38.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                />
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="pj-card rv d3">
+          <div class="pj-top pt4">👔</div>
+          <div class="pj-body">
+            <div class="pj-num">Project 04</div>
+            <div class="pj-title">HR Chatbot</div>
+            <p class="pj-desc">
+              An AI-powered HR assistant that automates employee queries — from
+              leave policies to onboarding, making HR interactions seamless.
+            </p>
+            <div class="pj-tags">
+              <span class="ptag">AI Chatbot</span
+              ><span class="ptag">Python</span><span class="ptag">HR Tech</span>
+            </div>
+            <a
+              href="https://github.com/akorani196-ux/HR-chatbot"
+              target="_blank"
+              class="pj-btn"
+            >
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57v-2.24c-3.02.56-3.8-.73-4.04-1.41-.13-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.78-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.11-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.47-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.3-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.38.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                />
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━ CONTACT ━━ -->
+    <section id="contact">
+      <div class="s-eyebrow rv">Let's Connect</div>
+      <h2 class="s-title rv" style="color: #e8f6fb">
+        Get In <em style="color: var(--teal-l)">Touch</em>
+      </h2>
+      <div class="s-rule rv"></div>
+
+      <div class="c-box rv">
+        <p class="c-sub">
+          Have a project in mind or want to collaborate? I'd love to hear from
+          you — let's build something great together! 🚀
+        </p>
+        <div class="c-list">
+          <a href="mailto:your.email@gmail.com" class="c-row">
+            <!-- ✏️ Apni email dono jagah update karo -->
+            <span class="c-ico">✉️</span>
+            <div>
+              <div class="c-lbl">Email</div>
+              <div class="c-val">your.email@gmail.com</div>
+            </div>
+          </a>
+          <a
+            href="https://github.com/akorani196-ux"
+            target="_blank"
+            class="c-row"
+          >
+            <span class="c-ico">🐙</span>
+            <div>
+              <div class="c-lbl">GitHub</div>
+              <div class="c-val">github.com/akorani196-ux</div>
+            </div>
+          </a>
+          <a
+            href="https://linkedin.com/in/yourprofile"
+            target="_blank"
+            class="c-row"
+          >
+            <!-- ✏️ Apna LinkedIn link add karo -->
+            <span class="c-ico">💼</span>
+            <div>
+              <div class="c-lbl">LinkedIn</div>
+              <div class="c-val">linkedin.com/in/yourprofile</div>
+            </div>
+          </a>
+          <a href="https://wa.me/92XXXXXXXXXX" target="_blank" class="c-row">
+            <!-- ✏️ Apna WhatsApp number update karo -->
+            <span class="c-ico">💬</span>
+            <div>
+              <div class="c-lbl">WhatsApp</div>
+              <div class="c-val">+92 300 0000000</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>
+        Crafted with ❤️ by <strong>Aqsa Abid</strong> &nbsp;·&nbsp; © 2025 All
+        Rights Reserved
+      </p>
+    </footer>
+
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   JAVASCRIPT — Clean & Simple
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <script>
+      // ── Custom cursor
+      var c1 = document.getElementById("c1"),
+        c2 = document.getElementById("c2");
+      var mx = window.innerWidth / 2,
+        my = window.innerHeight / 2;
+      var rx = mx,
+        ry = my;
+
+      document.addEventListener("mousemove", function (e) {
+        mx = e.clientX;
+        my = e.clientY;
+        c1.style.left = mx + "px";
+        c1.style.top = my + "px";
+      });
+      function followCursor() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        c2.style.left = rx + "px";
+        c2.style.top = ry + "px";
+        requestAnimationFrame(followCursor);
+      }
+      followCursor();
+
+      // ── Navbar shadow on scroll
+      window.addEventListener("scroll", function () {
+        document
+          .getElementById("navbar")
+          .classList.toggle("scrolled", window.scrollY > 50);
+      });
+
+      // ── Scroll reveal
+      var rvEls = document.querySelectorAll(".rv");
+      var rvObs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e, i) {
+            if (e.isIntersecting) {
+              var el = e.target;
+              var delay = 0;
+              if (el.classList.contains("d1")) delay = 80;
+              if (el.classList.contains("d2")) delay = 160;
+              if (el.classList.contains("d3")) delay = 240;
+              if (el.classList.contains("d4")) delay = 320;
+              setTimeout(function () {
+                el.classList.add("go");
+              }, delay);
+              rvObs.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+      );
+      rvEls.forEach(function (el) {
+        rvObs.observe(el);
+      });
+
+      // ── Skill bars
+      var bars = document.querySelectorAll(".bfill");
+      var barObs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.style.width = e.target.getAttribute("data-w") + "%";
+              barObs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.3 },
+      );
+      bars.forEach(function (b) {
+        barObs.observe(b);
+      });
+
+      // ── Active nav highlight
+      var sections = document.querySelectorAll("section[id]");
+      var navAs = document.querySelectorAll(".n-links a");
+      window.addEventListener("scroll", function () {
+        var cur = "";
+        sections.forEach(function (s) {
+          if (window.scrollY >= s.offsetTop - 140) cur = s.id;
+        });
+        navAs.forEach(function (a) {
+          if (a.getAttribute("href") === "#" + cur) {
+            a.style.color = "var(--teal)";
+          } else {
+            a.style.color = "";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
