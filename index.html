@@ -32,9 +32,6 @@
         --radius: 18px;
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   RESET & BASE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
       *,
       *::before,
       *::after {
@@ -67,9 +64,7 @@
         border-radius: 3px;
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CURSOR
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      /* CURSOR */
       body {
         cursor: none;
       }
@@ -99,15 +94,8 @@
           width 0.2s,
           height 0.2s;
       }
-      a:hover ~ #c2,
-      button:hover ~ #c2 {
-        width: 46px;
-        height: 46px;
-      }
 
-      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   NAVBAR
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      /* NAVBAR */
       nav {
         position: fixed;
         top: 0;
@@ -186,9 +174,7 @@
         transform: translateY(-1px);
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   HERO
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      /* HERO */
       #hero {
         min-height: 100vh;
         display: flex;
@@ -204,8 +190,6 @@
           #edfcff 100%
         );
       }
-
-      /* large decorative blobs */
       .blob {
         position: absolute;
         border-radius: 50%;
@@ -269,8 +253,6 @@
         position: relative;
         z-index: 1;
       }
-
-      /* ── hero text */
       .h-pill {
         display: inline-flex;
         align-items: center;
@@ -329,7 +311,6 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
-
       .role-tag {
         display: inline-block;
         background: var(--ink);
@@ -344,7 +325,6 @@
       .role-tag span {
         color: var(--teal-l);
       }
-
       .hero-desc {
         color: var(--ink3);
         font-size: 1.02rem;
@@ -357,7 +337,6 @@
         color: var(--ink);
         font-weight: 700;
       }
-
       .hero-cta {
         display: flex;
         gap: 0.9rem;
@@ -400,14 +379,11 @@
         color: var(--teal);
         transform: translateY(-1px);
       }
-
       .hero-nums {
         display: flex;
         gap: 2.5rem;
         padding-top: 2.2rem;
         border-top: 1px solid rgba(15, 25, 35, 0.1);
-      }
-      .hn {
       }
       .hn-n {
         font-family: "Fraunces", serif;
@@ -424,75 +400,51 @@
         margin-top: 0.25rem;
       }
 
-      /* ── hero avatar */
+      /* AVATAR SIDE — only image, no card */
       .av-side {
         display: flex;
         justify-content: center;
         align-items: center;
         position: relative;
       }
-
       .av-card {
-        width: 340px;
-        height: 400px;
-        background: var(--white);
-        border-radius: 32px;
-        border: 1.5px solid rgba(8, 145, 178, 0.15);
-        box-shadow: var(--shadow-lg);
+        width: 240px;
+        height: 240px;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        border-radius: 50%;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 1rem;
+        padding: 0;
         position: relative;
-        overflow: hidden;
-        padding: 2rem;
       }
-      .av-card::before {
-        content: "";
-        position: absolute;
-        top: -40px;
-        right: -40px;
-        width: 180px;
-        height: 180px;
-        background: radial-gradient(
-          circle,
-          rgba(8, 145, 178, 0.1),
-          transparent
-        );
-        border-radius: 50%;
-      }
-      .av-card::after {
-        content: "";
-        position: absolute;
-        bottom: -30px;
-        left: -30px;
-        width: 140px;
-        height: 140px;
-        background: radial-gradient(
-          circle,
-          rgba(245, 158, 11, 0.12),
-          transparent
-        );
-        border-radius: 50%;
-      }
-
       .av-photo-wrap {
-        width: 160px;
-        height: 160px;
+        width: 220px;
+        height: 220px;
         border-radius: 50%;
         background: linear-gradient(
           135deg,
           rgba(8, 145, 178, 0.15),
           rgba(245, 158, 11, 0.1)
         );
-        border: 3px solid rgba(8, 145, 178, 0.2);
+        border: 4px solid rgba(8, 145, 178, 0.35);
+        box-shadow:
+          0 8px 48px rgba(8, 145, 178, 0.28),
+          0 0 0 8px rgba(8, 145, 178, 0.08);
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
         position: relative;
         z-index: 1;
+      }
+      .av-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
       }
       .av-initials {
         font-family: "Fraunces", serif;
@@ -500,51 +452,7 @@
         font-weight: 700;
         color: var(--teal);
       }
-      .av-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
 
-      .av-name {
-        font-family: "Fraunces", serif;
-        font-size: 1.4rem;
-        font-weight: 700;
-        color: var(--ink);
-        position: relative;
-        z-index: 1;
-      }
-      .av-role {
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: var(--teal-d);
-        background: rgba(8, 145, 178, 0.1);
-        padding: 0.3rem 0.8rem;
-        border-radius: 100px;
-        position: relative;
-        z-index: 1;
-        border: 1px solid rgba(8, 145, 178, 0.2);
-      }
-
-      .av-badges {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        justify-content: center;
-        position: relative;
-        z-index: 1;
-      }
-      .av-badge {
-        font-size: 0.72rem;
-        font-weight: 700;
-        padding: 0.28rem 0.75rem;
-        background: var(--surface2);
-        border: 1px solid rgba(15, 25, 35, 0.08);
-        border-radius: 100px;
-        color: var(--ink2);
-      }
-
-      /* floating cards around avatar */
       .float-el {
         position: absolute;
         background: var(--white);
@@ -589,9 +497,7 @@
         }
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SECTION COMMONS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      /* SECTION COMMONS */
       section {
         padding: 6.5rem 7%;
         position: relative;
@@ -625,8 +531,6 @@
         border-radius: 2px;
         margin-bottom: 3rem;
       }
-
-      /* reveal */
       .rv {
         opacity: 0;
         transform: translateY(24px);
@@ -651,9 +555,7 @@
         transition-delay: 0.32s;
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ABOUT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      /* ABOUT */
       #about {
         background: linear-gradient(
           160deg,
@@ -662,12 +564,8 @@
           #e8f6fb 100%
         );
       }
-      .about-grid {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 5rem;
-        align-items: start;
-        max-width: 1100px;
+      .about-single {
+        max-width: 760px;
       }
       .about-text p {
         font-size: 1rem;
@@ -686,49 +584,7 @@
         font-weight: 700;
       }
 
-      .about-right {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .a-card {
-        background: rgba(255, 255, 255, 0.85);
-        border: 1.5px solid rgba(8, 145, 178, 0.15);
-        border-radius: 16px;
-        padding: 1.2rem 1.4rem;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        transition: all 0.25s;
-        box-shadow: 0 2px 12px rgba(8, 145, 178, 0.08);
-      }
-      .a-card:hover {
-        border-color: rgba(8, 145, 178, 0.35);
-        background: rgba(8, 145, 178, 0.04);
-        transform: translateX(5px);
-        box-shadow: 0 4px 20px rgba(8, 145, 178, 0.1);
-      }
-      .a-ico {
-        font-size: 1.3rem;
-        flex-shrink: 0;
-      }
-      .a-lbl {
-        font-size: 0.67rem;
-        font-weight: 800;
-        letter-spacing: 0.1em;
-        color: var(--teal-d);
-        text-transform: uppercase;
-      }
-      .a-val {
-        font-size: 0.93rem;
-        font-weight: 600;
-        color: var(--ink);
-        margin-top: 0.1rem;
-      }
-
-      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SKILLS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      /* SKILLS */
       #skills {
         background: linear-gradient(
           160deg,
@@ -758,7 +614,6 @@
       #skills .s-rule {
         background: linear-gradient(90deg, var(--teal-l), var(--amber-l));
       }
-
       .sk-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -807,7 +662,6 @@
         color: #e8f6fb;
         margin-bottom: 1.3rem;
       }
-
       .brow {
         margin-bottom: 0.9rem;
       }
@@ -851,9 +705,7 @@
         color: var(--teal-l);
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   PROJECTS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      /* PROJECTS */
       #projects {
         background: linear-gradient(
           160deg,
@@ -868,7 +720,6 @@
         gap: 1.7rem;
         max-width: 1200px;
       }
-
       .pj-card {
         background: var(--white);
         border: 1.5px solid rgba(15, 25, 35, 0.08);
@@ -910,7 +761,6 @@
       .pt4 {
         background: linear-gradient(135deg, #f3f0ff, #f0effe);
       }
-
       .pj-body {
         padding: 1.5rem;
         flex: 1;
@@ -954,7 +804,6 @@
         border-radius: 100px;
         color: var(--teal-d);
       }
-
       .pj-btn {
         display: inline-flex;
         align-items: center;
@@ -978,9 +827,7 @@
         fill: currentColor;
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CONTACT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      /* CONTACT */
       #contact {
         background: linear-gradient(160deg, #0b1f2e 0%, #0f2a3d 100%);
         position: relative;
@@ -1005,7 +852,6 @@
       #contact .s-rule {
         background: linear-gradient(90deg, var(--teal-l), var(--amber-l));
       }
-
       .c-box {
         max-width: 680px;
         background: rgba(255, 255, 255, 0.06);
@@ -1059,9 +905,7 @@
         margin-top: 0.1rem;
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   FOOTER
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      /* FOOTER */
       footer {
         background: #0b1f2e;
         border-top: 1px solid rgba(8, 145, 178, 0.2);
@@ -1076,9 +920,6 @@
         color: var(--teal-l);
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   RESPONSIVE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
       @media (max-width: 800px) {
         .hero-wrap {
           grid-template-columns: 1fr;
@@ -1096,10 +937,6 @@
         .hero-desc {
           margin: 0 auto 2.5rem;
         }
-        .about-grid {
-          grid-template-columns: 1fr;
-          gap: 3rem;
-        }
         .n-links {
           display: none;
         }
@@ -1110,11 +947,10 @@
     </style>
   </head>
   <body>
-    <!-- CURSOR -->
     <div id="c1"></div>
     <div id="c2"></div>
 
-    <!-- ━━ NAV ━━ -->
+    <!-- NAV -->
     <nav id="navbar">
       <div class="n-logo">Aqsa<span>.</span></div>
       <ul class="n-links">
@@ -1127,39 +963,31 @@
       <a href="#contact" class="n-btn">Hire Me →</a>
     </nav>
 
-    <!-- ━━ HERO ━━ -->
+    <!-- HERO -->
     <section id="hero">
       <div class="blob blob-1"></div>
       <div class="blob blob-2"></div>
       <div class="blob blob-3"></div>
-
       <div class="hero-wrap">
-        <!-- text side -->
         <div>
           <div class="h-pill rv">
             <span class="pulse"></span> Available for Work
           </div>
-
           <h1 class="hero-title rv d1">
-            Hi, I'm<br />
-            <span class="name-line">Aqsa Abid</span>
+            Hi, I'm<br /><span class="name-line">Aqsa Abid</span>
           </h1>
-
           <div class="role-tag rv d2">
             <span>Frontend Developer</span> &amp; AI Chatbot Developer
           </div>
-
           <p class="hero-desc rv d2">
             I craft <strong>beautiful, responsive websites</strong> and build
             <strong>intelligent AI chatbots</strong> that solve real problems.
             Based in Pakistan, passionate about clean code and smart technology.
           </p>
-
           <div class="hero-cta rv d3">
             <a href="#projects" class="cta-main">View My Work →</a>
             <a href="#contact" class="cta-ghost">Let's Talk</a>
           </div>
-
           <div class="hero-nums rv d4">
             <div class="hn">
               <div class="hn-n">4</div>
@@ -1176,133 +1004,56 @@
           </div>
         </div>
 
-        <!-- avatar card -->
+        <!-- AVATAR SIDE — sirf circular image, koi card/name/badges nahi -->
         <div class="av-side rv d2">
           <span class="float-el">⚡ AI Developer</span>
           <span class="float-el">✅ Open to Work</span>
           <span class="float-el">🌐 Web Dev</span>
-
           <div class="av-card">
             <div class="av-photo-wrap">
-              <!--
-          ═══════════════════════════════════
-          📸 APNI PHOTO YAHAN LAGAO:
-          Neeche wali line uncomment karo aur
-          src mein apni photo ka path likho:
-
-          <img src="apki-photo.jpg" alt="Aqsa Abid" class="av-img">
-
-          Aur uske neche wali line comment karo
-          ═══════════════════════════════════
-          -->
-
-              <div class="av-initials">AA</div>
-            </div>
-            <div class="av-name">Aqsa Abid</div>
-            <div class="av-role">Frontend & AI Developer</div>
-            <div class="av-badges">
-              <span class="av-badge">🤖 AI Chatbots</span>
-              <span class="av-badge">🎨 UI Design</span>
-              <span class="av-badge">⚡ Groq API</span>
+              <img class="av-img" src="aqsa.jpeg" alt="Aqsa Abid" />
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ━━ ABOUT ━━ -->
+    <!-- ABOUT -->
     <section id="about">
-      <div class="about-grid">
-        <div>
-          <div class="s-eyebrow rv">Who I Am</div>
-          <h2 class="s-title rv">About <em>Me</em></h2>
-          <div class="s-rule rv"></div>
-          <div class="about-text">
-            <p class="rv">
-              I'm <em>Aqsa Abid</em>, a passionate
-              <strong>Frontend Developer</strong> and
-              <strong>AI Chatbot Developer</strong> who loves turning ideas into
-              elegant, working digital products.
-            </p>
-            <p class="rv d1">
-              My work spans from building
-              <strong>pixel-perfect, responsive websites</strong> using HTML,
-              CSS &amp; JavaScript — to developing
-              <strong>intelligent AI-powered chatbots</strong> using
-              cutting-edge tools like Groq API, LLMs, and prompt engineering.
-            </p>
-            <p class="rv d2">
-              I've built a research assistant, an HR bot, a restaurant chatbot,
-              and a blazing-fast LLM chat app. Every project I take on is
-              crafted with
-              <strong>care, precision, and real problem-solving</strong> in
-              mind.
-            </p>
-            <p class="rv d3">
-              I believe the best software lives where
-              <strong>beautiful design meets intelligent technology</strong> —
-              and that's exactly what I build.
-            </p>
-          </div>
-        </div>
-
-        <div>
-          <div class="s-eyebrow rv">Quick Info</div>
-          <h2 class="s-title rv" style="font-size: 1.65rem">My Details</h2>
-          <div class="s-rule rv"></div>
-          <div class="about-right">
-            <div class="a-card rv">
-              <span class="a-ico">👩‍💻</span>
-              <div>
-                <div class="a-lbl">Role</div>
-                <div class="a-val">Frontend & AI Developer</div>
-              </div>
-            </div>
-            <div class="a-card rv d1">
-              <span class="a-ico">📍</span>
-              <div>
-                <div class="a-lbl">Location</div>
-                <!-- ✏️ Apna sheher yahan likho -->
-                <div class="a-val">Pakistan 🇵🇰</div>
-              </div>
-            </div>
-            <div class="a-card rv d2">
-              <span class="a-ico">🐙</span>
-              <div>
-                <div class="a-lbl">GitHub</div>
-                <div class="a-val">github.com/akorani196-ux</div>
-              </div>
-            </div>
-            <div class="a-card rv d2">
-              <span class="a-ico">✉️</span>
-              <div>
-                <div class="a-lbl">Email</div>
-                <!-- ✏️ Apni email update karo -->
-                <div class="a-val">your.email@gmail.com</div>
-              </div>
-            </div>
-            <div class="a-card rv d3">
-              <span class="a-ico">🟢</span>
-              <div>
-                <div class="a-lbl">Status</div>
-                <div class="a-val">Open to Work & Freelance</div>
-              </div>
-            </div>
-            <div class="rv d3" style="padding-top: 0.3rem">
-              <!-- ✏️ CV ka link yahan add karo -->
-              <a
-                href="#"
-                class="cta-main"
-                style="font-size: 0.85rem; padding: 0.75rem 1.7rem"
-                >Download CV ↓</a
-              >
-            </div>
-          </div>
+      <div class="about-single">
+        <div class="s-eyebrow rv">Who I Am</div>
+        <h2 class="s-title rv">About <em>Me</em></h2>
+        <div class="s-rule rv"></div>
+        <div class="about-text">
+          <p class="rv">
+            I'm <em>Aqsa Abid</em>, a passionate
+            <strong>Frontend Developer</strong> and
+            <strong>AI Chatbot Developer</strong> who loves turning ideas into
+            elegant, working digital products.
+          </p>
+          <p class="rv d1">
+            My work spans from building
+            <strong>pixel-perfect, responsive websites</strong> using HTML, CSS
+            &amp; JavaScript — to developing
+            <strong>intelligent AI-powered chatbots</strong> using cutting-edge
+            tools like Groq API, LLMs, and prompt engineering.
+          </p>
+          <p class="rv d2">
+            I've built a research assistant, an HR bot, a restaurant chatbot,
+            and a blazing-fast LLM chat app. Every project I take on is crafted
+            with <strong>care, precision, and real problem-solving</strong> in
+            mind.
+          </p>
+          <p class="rv d3">
+            I believe the best software lives where
+            <strong>beautiful design meets intelligent technology</strong> — and
+            that's exactly what I build.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- ━━ SKILLS ━━ -->
+    <!-- SKILLS -->
     <section id="skills">
       <div class="s-eyebrow rv">What I Do</div>
       <h2 class="s-title rv">
@@ -1334,9 +1085,8 @@
             <div class="btrack"><div class="bfill" data-w="93"></div></div>
           </div>
         </div>
-
         <div class="sk-card rv d1">
-          <span class="sk-ico">🤖</span>
+          <span class="sk-ico">💬</span>
           <div class="sk-t">AI Chatbot Development</div>
           <div class="brow">
             <div class="bmeta">
@@ -1361,27 +1111,24 @@
             <div class="btrack"><div class="bfill" data-w="82"></div></div>
           </div>
         </div>
-
         <div class="sk-card rv d2">
           <span class="sk-ico">🛠️</span>
           <div class="sk-t">Tools & Technologies</div>
           <div class="sk-tags">
-            <span class="stag">Python</span>
-            <span class="stag">Git & GitHub</span>
-            <span class="stag">Streamlit</span>
-            <span class="stag">Groq API</span>
-            <span class="stag">OpenAI API</span>
-            <span class="stag">REST APIs</span>
-            <span class="stag">VS Code</span>
-            <span class="stag">Figma</span>
-            <span class="stag">NLP</span>
-            <span class="stag">JSON</span>
+            <span class="stag">Python</span
+            ><span class="stag">Git & GitHub</span>
+            <span class="stag">Streamlit</span
+            ><span class="stag">Groq API</span>
+            <span class="stag">OpenAI API</span
+            ><span class="stag">REST APIs</span>
+            <span class="stag">VS Code</span><span class="stag">Figma</span>
+            <span class="stag">NLP</span><span class="stag">JSON</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ━━ PROJECTS ━━ -->
+    <!-- PROJECTS -->
     <section id="projects">
       <div class="s-eyebrow rv">My Work</div>
       <h2 class="s-title rv">Featured <em>Projects</em></h2>
@@ -1401,21 +1148,30 @@
               <span class="ptag">Python</span><span class="ptag">LLM</span
               ><span class="ptag">Streamlit</span>
             </div>
-            <a
-              href="https://github.com/akorani196-ux/-AI-research-assistant"
-              target="_blank"
-              class="pj-btn"
-            >
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57v-2.24c-3.02.56-3.8-.73-4.04-1.41-.13-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.78-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.11-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.47-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.3-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.38.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"
-                />
-              </svg>
-              GitHub
-            </a>
+            <div style="display: flex; gap: 0.7rem; flex-wrap: wrap">
+              <a
+                href="https://airesearchchatbot.streamlit.app/"
+                target="_blank"
+                class="pj-btn"
+                style="
+                  background: linear-gradient(135deg, #0891b2, #10b981);
+                  box-shadow: 0 0 18px rgba(8, 145, 178, 0.35);
+                "
+                >🚀 Live Demo</a
+              >
+              <a
+                href="https://github.com/akorani196-ux/-AI-research-assistant"
+                target="_blank"
+                class="pj-btn"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57v-2.24c-3.02.56-3.8-.73-4.04-1.41-.13-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.78-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.11-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.47-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.3-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.38.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                  /></svg
+                >GitHub</a
+              >
+            </div>
           </div>
         </div>
-
         <div class="pj-card rv d1">
           <div class="pj-top pt2">🍽️</div>
           <div class="pj-body">
@@ -1429,21 +1185,30 @@
               <span class="ptag">AI Chatbot</span
               ><span class="ptag">Python</span><span class="ptag">NLP</span>
             </div>
-            <a
-              href="https://github.com/akorani196-ux/Resturant-chatbot"
-              target="_blank"
-              class="pj-btn"
-            >
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57v-2.24c-3.02.56-3.8-.73-4.04-1.41-.13-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.78-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.11-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.47-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.3-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.38.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"
-                />
-              </svg>
-              GitHub
-            </a>
+            <div style="display: flex; gap: 0.7rem; flex-wrap: wrap">
+              <a
+                href="https://resturant-chatbot-8app9qy7ods6kem3s2kvkn9.streamlit.app/"
+                target="_blank"
+                class="pj-btn"
+                style="
+                  background: linear-gradient(135deg, #0891b2, #10b981);
+                  box-shadow: 0 0 18px rgba(8, 145, 178, 0.35);
+                "
+                >🚀 Live Demo</a
+              >
+              <a
+                href="https://github.com/akorani196-ux/Resturant-chatbot"
+                target="_blank"
+                class="pj-btn"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57v-2.24c-3.02.56-3.8-.73-4.04-1.41-.13-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.78-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.11-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.47-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.3-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.38.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                  /></svg
+                >GitHub</a
+              >
+            </div>
           </div>
         </div>
-
         <div class="pj-card rv d2">
           <div class="pj-top pt3">⚡</div>
           <div class="pj-body">
@@ -1452,26 +1217,36 @@
             <p class="pj-desc">
               A blazing-fast AI chat app powered by the Groq API — ultra-low
               latency conversations using the latest open-source LLM models.
+              100% free, unlimited, with file upload support.
             </p>
             <div class="pj-tags">
               <span class="ptag">Groq API</span><span class="ptag">Python</span
-              ><span class="ptag">LLM</span>
+              ><span class="ptag">LLM</span><span class="ptag">Netlify</span>
             </div>
-            <a
-              href="https://github.com/akorani196-ux/groqchat-ai"
-              target="_blank"
-              class="pj-btn"
-            >
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57v-2.24c-3.02.56-3.8-.73-4.04-1.41-.13-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.78-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.11-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.47-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.3-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.38.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"
-                />
-              </svg>
-              GitHub
-            </a>
+            <div style="display: flex; gap: 0.7rem; flex-wrap: wrap">
+              <a
+                href="https://cerulean-pudding-70222a.netlify.app/"
+                target="_blank"
+                class="pj-btn"
+                style="
+                  background: linear-gradient(135deg, #0891b2, #10b981);
+                  box-shadow: 0 0 18px rgba(8, 145, 178, 0.35);
+                "
+                >🚀 Live Demo</a
+              >
+              <a
+                href="https://github.com/akorani196-ux/groqchat-ai"
+                target="_blank"
+                class="pj-btn"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57v-2.24c-3.02.56-3.8-.73-4.04-1.41-.13-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.78-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.11-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.47-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.3-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.38.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                  /></svg
+                >GitHub</a
+              >
+            </div>
           </div>
         </div>
-
         <div class="pj-card rv d3">
           <div class="pj-top pt4">👔</div>
           <div class="pj-body">
@@ -1489,96 +1264,77 @@
               href="https://github.com/akorani196-ux/HR-chatbot"
               target="_blank"
               class="pj-btn"
-            >
-              <svg viewBox="0 0 24 24">
+              ><svg viewBox="0 0 24 24">
                 <path
                   d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57v-2.24c-3.02.56-3.8-.73-4.04-1.41-.13-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.78-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.11-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.47-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.3-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.38.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"
-                />
-              </svg>
-              GitHub
-            </a>
+                /></svg
+              >GitHub</a
+            >
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ━━ CONTACT ━━ -->
+    <!-- CONTACT -->
     <section id="contact">
       <div class="s-eyebrow rv">Let's Connect</div>
       <h2 class="s-title rv" style="color: #e8f6fb">
         Get In <em style="color: var(--teal-l)">Touch</em>
       </h2>
       <div class="s-rule rv"></div>
-
       <div class="c-box rv">
         <p class="c-sub">
           Have a project in mind or want to collaborate? I'd love to hear from
           you — let's build something great together! 🚀
         </p>
         <div class="c-list">
-          <a href="mailto:your.email@gmail.com" class="c-row">
-            <!-- ✏️ Apni email dono jagah update karo -->
-            <span class="c-ico">✉️</span>
+          <a href="akorani196@gmail.com" class="c-row"
+            ><span class="c-ico">✉️</span>
             <div>
               <div class="c-lbl">Email</div>
-              <div class="c-val">your.email@gmail.com</div>
-            </div>
-          </a>
+              <div class="c-val">akorani196@gmail.com</div>
+            </div></a
+          >
           <a
             href="https://github.com/akorani196-ux"
             target="_blank"
             class="c-row"
-          >
-            <span class="c-ico">🐙</span>
+            ><span class="c-ico">🐙</span>
             <div>
               <div class="c-lbl">GitHub</div>
               <div class="c-val">github.com/akorani196-ux</div>
-            </div>
-          </a>
+            </div></a
+          >
           <a
-            href="https://linkedin.com/in/yourprofile"
+            href="https://www.linkedin.com/in/aqsa-abid-75b52a3a0/"
             target="_blank"
             class="c-row"
-          >
-            <!-- ✏️ Apna LinkedIn link add karo -->
-            <span class="c-ico">💼</span>
+            ><span class="c-ico">💼</span>
             <div>
               <div class="c-lbl">LinkedIn</div>
-              <div class="c-val">linkedin.com/in/yourprofile</div>
-            </div>
-          </a>
-          <a href="https://wa.me/92XXXXXXXXXX" target="_blank" class="c-row">
-            <!-- ✏️ Apna WhatsApp number update karo -->
-            <span class="c-ico">💬</span>
+              <div class="c-val">
+                https://www.linkedin.com/in/aqsa-abid-75b52a3a0/
+              </div>
+            </div></a
+          >
+          <a href="https://wa.me/03088632920" target="_blank" class="c-row"
+            ><span class="c-ico">💬</span>
             <div>
               <div class="c-lbl">WhatsApp</div>
-              <div class="c-val">+92 300 0000000</div>
-            </div>
-          </a>
+              <div class="c-val">+92 88632920</div>
+            </div></a
+          >
         </div>
       </div>
     </section>
-
-    <!-- FOOTER -->
-    <footer>
-      <p>
-        Crafted with ❤️ by <strong>Aqsa Abid</strong> &nbsp;·&nbsp; © 2025 All
-        Rights Reserved
-      </p>
-    </footer>
-
-    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   JAVASCRIPT — Clean & Simple
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
     <script>
-      // ── Custom cursor
+      // Custom cursor
       var c1 = document.getElementById("c1"),
         c2 = document.getElementById("c2");
       var mx = window.innerWidth / 2,
-        my = window.innerHeight / 2;
-      var rx = mx,
+        my = window.innerHeight / 2,
+        rx = mx,
         ry = my;
-
       document.addEventListener("mousemove", function (e) {
         mx = e.clientX;
         my = e.clientY;
@@ -1594,21 +1350,21 @@
       }
       followCursor();
 
-      // ── Navbar shadow on scroll
+      // Navbar scroll
       window.addEventListener("scroll", function () {
         document
           .getElementById("navbar")
           .classList.toggle("scrolled", window.scrollY > 50);
       });
 
-      // ── Scroll reveal
+      // Scroll reveal
       var rvEls = document.querySelectorAll(".rv");
       var rvObs = new IntersectionObserver(
         function (entries) {
-          entries.forEach(function (e, i) {
+          entries.forEach(function (e) {
             if (e.isIntersecting) {
-              var el = e.target;
-              var delay = 0;
+              var el = e.target,
+                delay = 0;
               if (el.classList.contains("d1")) delay = 80;
               if (el.classList.contains("d2")) delay = 160;
               if (el.classList.contains("d3")) delay = 240;
@@ -1626,7 +1382,7 @@
         rvObs.observe(el);
       });
 
-      // ── Skill bars
+      // Skill bars
       var bars = document.querySelectorAll(".bfill");
       var barObs = new IntersectionObserver(
         function (entries) {
@@ -1643,7 +1399,7 @@
         barObs.observe(b);
       });
 
-      // ── Active nav highlight
+      // Active nav
       var sections = document.querySelectorAll("section[id]");
       var navAs = document.querySelectorAll(".n-links a");
       window.addEventListener("scroll", function () {
@@ -1652,11 +1408,8 @@
           if (window.scrollY >= s.offsetTop - 140) cur = s.id;
         });
         navAs.forEach(function (a) {
-          if (a.getAttribute("href") === "#" + cur) {
-            a.style.color = "var(--teal)";
-          } else {
-            a.style.color = "";
-          }
+          a.style.color =
+            a.getAttribute("href") === "#" + cur ? "var(--teal)" : "";
         });
       });
     </script>
